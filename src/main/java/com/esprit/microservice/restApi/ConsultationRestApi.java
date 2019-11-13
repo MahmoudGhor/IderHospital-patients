@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esprit.microservice.models.Consultation;
+import com.esprit.microservice.models.Examen;
 import com.esprit.microservice.services.ConsultationService;
 
 @RestController
@@ -38,7 +39,7 @@ public class ConsultationRestApi {
 
 	@PutMapping(value = "/{idConsultation}/{idExamen}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Consultation> setExamToConsultation(
+	public ResponseEntity<Examen> setExamToConsultation(
 			@PathVariable(value = "idConsultation") int idConsultation,
 			@PathVariable(value = "idExamen") int idExamen) {
 		return new ResponseEntity<>(consultationService.affectExamToConsultation(idConsultation, idExamen),

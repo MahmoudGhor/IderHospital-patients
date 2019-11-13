@@ -67,6 +67,12 @@ public class Consultation implements Serializable {
 	public void setExamens(List<Examen> examens) {
 		this.examens = examens;
 	}
+	@Override
+	public String toString() {
+		return "Consultation [id=" + id + ", patient=" + patient + ", medecin=" + medecin + ", renseignement="
+				+ renseignement + ", dateConsultation=" + dateConsultation + ", examens=" + examens + "]";
+	}
+	
 	
 	
 }

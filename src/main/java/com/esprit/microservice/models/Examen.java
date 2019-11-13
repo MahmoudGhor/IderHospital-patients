@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Examen implements Serializable {
 	/**
@@ -19,32 +21,45 @@ public class Examen implements Serializable {
 	private int id;
 	private String nom;
 	private String observation;
+	@JsonIgnore
 	@ManyToOne
 	private Consultation consultation;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getObservation() {
 		return observation;
 	}
+
 	public void setObservation(String observation) {
 		this.observation = observation;
 	}
+
 	public Consultation getConsultation() {
 		return consultation;
 	}
+
 	public void setConsultation(Consultation consultation) {
 		this.consultation = consultation;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Examen " + nom;
+	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.esprit.microservice.models.Consultation;
+import com.esprit.microservice.models.Examen;
 import com.esprit.microservice.repository.ConsultationRepository;
 import com.esprit.microservice.repository.ExamenRepository;
 import com.esprit.microservice.repository.PatientRepository;
@@ -26,12 +27,14 @@ public class ConsultationService {
 		return consultationRepository.save(consultation);
 	}
 
-	public Consultation affectExamToConsultation(int idConsultation, int idExam) {
+	public Examen affectExamToConsultation(int idConsultation, int idExam) {
 		if (consultationRepository.findById(idConsultation).isPresent()
 				&& examenRepository.findById(idExam).isPresent()) {
-			Consultation existingConsultation = consultationRepository.findById(idConsultation).get();
-			existingConsultation.getExamens().add(examenRepository.findById(idExam).get());
-			return existingConsultation;
+			Examen existingExamen = examenRepository.findById(idExam).get();
+			existingExamen.setConsultation(consultationRepository.findById(idConsultation).get());
+			//Consultation existingConsultation = consultationRepository.findById(idConsultation).get();
+			//existingConsultation.getExamens().add(examenRepository.findById(idExam).get());
+			return examenRepository.save(existingExamen);
 		} else {
 			return null;
 		}
